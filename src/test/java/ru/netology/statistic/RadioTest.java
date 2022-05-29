@@ -11,10 +11,10 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = {"/testDataStations.csv"})
-    public void manualStationSelection(int StationNumber, int expected) {
+    public void manualStationSelection(int stationNumber, int expected) {
         Radio manuel = new Radio();
 
-        manuel.setCurrentRadioStation(StationNumber);
+        manuel.setCurrentRadioStation(stationNumber);
 
         int actual = manuel.getCurrentRadioStation();
 
@@ -24,20 +24,23 @@ public class RadioTest {
 
     @ParameterizedTest
     @CsvFileSource(resources = {"/testDataNextStations.csv"})
-    public void nextStationSelection(int StationNumber, int expected) {
+    public void nextStationSelection(int stationNumber, int expected) {
         Radio next = new Radio();
-        next.nextStation(StationNumber);
-        int actual = next.getCurrentRadioStation();
+        next.setCurrentRadioStation(stationNumber);
+        next.setNextStation();
+        int actual = next.getNextStation();
 
         assertEquals(expected, actual);
     }
 
+
     @ParameterizedTest
     @CsvFileSource(resources = {"/testDataPrevStations.csv"})
-    public void prevStationSelection(int StationNumber, int expected) {
+    public void prevStationSelection(int stationNumber, int expected) {
         Radio prev = new Radio();
-        prev.prevStation(StationNumber);
-        int actual = prev.getCurrentRadioStation();
+        prev.setCurrentRadioStation(stationNumber);
+        prev.setPrevStation();
+        int actual = prev.getPrevStation();
 
         assertEquals(expected, actual);
     }
