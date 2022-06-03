@@ -12,7 +12,7 @@ public class RadioTest {
     @ParameterizedTest
     @CsvFileSource(resources = {"/testDataStations.csv"})
     public void manualStationSelection(int stationNumber, int expected) {
-        Radio manuel = new Radio(15);
+        Radio manuel = new Radio(15, 100);
 
         manuel.setCurrentRadioStation(stationNumber);
 
@@ -25,7 +25,7 @@ public class RadioTest {
     @ParameterizedTest
     @CsvFileSource(resources = {"/testDataNextStations.csv"})
     public void nextStationSelection(int stationNumber, int expected) {
-        Radio next = new Radio(15);
+        Radio next = new Radio(15, 100);
         next.setCurrentRadioStation(stationNumber);
         next.setNextStation();
         int actual = next.getNextStation();
@@ -37,7 +37,7 @@ public class RadioTest {
     @ParameterizedTest
     @CsvFileSource(resources = {"/testDataPrevStations.csv"})
     public void prevStationSelection(int stationNumber, int expected) {
-        Radio prev = new Radio(15);
+        Radio prev = new Radio(15, 100);
         prev.setCurrentRadioStation(stationNumber);
         prev.setPrevStation();
         int actual = prev.getPrevStation();
@@ -49,7 +49,7 @@ public class RadioTest {
     @ParameterizedTest
     @CsvFileSource(resources = {"/testDataVolumeUp.csv"})
     public void increaseVolume(int levelVolume, int expected) {
-        RadioVol up = new RadioVol(100);
+        Radio up = new Radio(15, 100);
         up.setCurrentVolume(levelVolume);
         up.increaseVolume();
         int actual = up.getCurrentVolume();
@@ -60,7 +60,7 @@ public class RadioTest {
     @ParameterizedTest
     @CsvFileSource(resources = {"/testDataVolumeDown.csv"})
     public void decreaseVolume(int levelVolume, int expected) {
-        RadioVol down = new RadioVol(100);
+        Radio down = new Radio(15, 100);
         down.setCurrentVolume(levelVolume);
         down.decreaseVolume();
         int actual = down.getCurrentVolume();
